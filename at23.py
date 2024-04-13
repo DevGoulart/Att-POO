@@ -1,0 +1,45 @@
+class Produto:
+    def __init__(self, nome, preco):
+        self.nome = nome
+        self.preco = preco
+
+    def aplicar_desconto(self, desconto):
+        self.preco -= desconto
+
+class Livro(Produto):
+    def __init__(self, nome, preco, autor):
+        super().__init__(nome, preco)
+        self.autor = autor
+
+    def aplicar_desconto(self, desconto):
+        super().aplicar_desconto(desconto)
+        self.preco -= self.preco * 0.05
+    
+    def MostrarInfo(self):
+        print(self.nome, self.preco, self.autor)
+
+class Eletronico(Produto):
+    def __init__(self, nome, preco, garantia):
+        super().__init__(nome, preco)
+        self.garantia = garantia
+
+    def aplicar_desconto(self, desconto):
+        super().aplicar_desconto(desconto)
+        self.preco -= self.preco * 0.10
+
+    def MostrarInfo(self):
+        print(self.nome, self.preco, self.garantia)
+
+# Exemplo de uso:
+
+livro1 = Livro("Dom Casmurro", 30, "Machado de Assis")
+livro1.aplicar_desconto(5)
+Livro.MostrarInfo(livro1)
+print("Preço do Livro:", livro1.preco)
+print("------------------------")
+
+eletronico1 = Eletronico("Smartphone", 1000, "1 ano")
+eletronico1.aplicar_desconto(50)
+Eletronico.MostrarInfo(eletronico1)
+print("Preço do Eletrônico:", eletronico1.preco)
+print("------------------------")
